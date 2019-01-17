@@ -2,6 +2,7 @@ var element;
 var calls = [];
 var vist = [];
 var st, en;
+var greenRange;
 var pulse;
 var muteCheckBox;
 
@@ -18,14 +19,16 @@ function setup() {
 			vis[i][j] = 0;
 		}
 	}
+	greenRange = -1;
+
 	calls.push(createVector(0, elements.length - 1));
-	
+
 	pulse = new p5.Pulse();
 	pulse.amp(0.5);
 	pulse.freq(220);
 	pulse.start();
-	
-	muteCheckBox = createCheckbox("mute"); 
+
+	muteCheckBox = createCheckbox("mute");
 }
 
 function draw() {
@@ -45,9 +48,8 @@ function draw() {
 			pulse.freq(elements[i]);
 		}
 		else{
-			if(st == en){
+			if(i <= greenRange){
 				fill(0, 255, 0);
-				pulse.stop();
 			}
 			else
 				fill(0);
@@ -102,4 +104,8 @@ function mergeSort(){
 		return;
 	}
 	st = -1, en = -1;
+	if(greenRange < elements.length)
+		greenRange++;
+	else
+		pulse.stop();
 }
