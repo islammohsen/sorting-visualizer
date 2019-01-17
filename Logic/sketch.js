@@ -50,6 +50,7 @@ function draw() {
 		else{
 			if(i <= greenRange){
 				fill(0, 255, 0);
+				pulse.freq(elements[i]);
 			}
 			else
 				fill(0);
@@ -105,7 +106,7 @@ function mergeSort(){
 	}
 	st = -1, en = -1;
 	if(greenRange < elements.length)
-		greenRange++;
+		greenRange+=4;
 	else
 		pulse.stop();
 }
