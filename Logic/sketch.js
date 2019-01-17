@@ -2,6 +2,7 @@ var element;
 var calls = [];
 var vist = [];
 var st, en;
+var pulse;
 
 function setup() {
 	createCanvas(1500, 750);
@@ -17,6 +18,11 @@ function setup() {
 		}
 	}
 	calls.push(createVector(0, elements.length - 1));
+	
+	pulse = new p5.Pulse();
+	pulse.amp(0.5);
+	pulse.freq(220);
+	pulse.start();
 }
 
 function draw() {
@@ -27,11 +33,15 @@ function draw() {
 	print(elements.length);
 	for(var i = 0; i < elements.length; i++){
 		noStroke();
-		if(st <= i && i <= en)
+		if(st <= i && i <= en){
 			fill(255, 0, 0);
+			pulse.freq(elements[i]);
+		}
 		else{
-			if(st == en)
+			if(st == en){
 				fill(0, 255, 0);
+				pulse.stop();
+			}
 			else
 				fill(0);
 		}
