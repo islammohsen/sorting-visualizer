@@ -3,6 +3,7 @@ var calls = [];
 var vist = [];
 var st, en;
 var pulse;
+var muteCheckBox;
 
 function setup() {
 	createCanvas(1500, 750);
@@ -23,11 +24,17 @@ function setup() {
 	pulse.amp(0.5);
 	pulse.freq(220);
 	pulse.start();
+	
+	muteCheckBox = createCheckbox("mute"); 
 }
 
 function draw() {
 	background(255);
-	//frameRate(5);
+	if(muteCheckBox.checked())
+		pulse.amp(0);
+	else
+		pulse.amp(0.5);
+	//frameRate(1);
 	mergeSort();
 	var size = width / elements.length;
 	print(elements.length);
