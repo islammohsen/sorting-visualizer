@@ -4,11 +4,10 @@ var vist = [];
 var st, en;
 
 function setup() {
-	createCanvas(600, 600);
-	st = -1, en = -1;
-	elements = new Array(100);
+	createCanvas(1500, 750);
+	elements = new Array(1000);
 	for(var i = 0; i < elements.length; i++){
-		elements[i] = random(0, 600);
+		elements[i] = random(0, height);
 	}
 	vis = new Array(1000);
 	for(var i = 0; i < vis.length; i++){
@@ -22,15 +21,20 @@ function setup() {
 
 function draw() {
 	background(255);
-	frameRate(5);
+	//frameRate(5);
 	mergeSort();
 	var size = width / elements.length;
 	print(elements.length);
 	for(var i = 0; i < elements.length; i++){
+		noStroke();
 		if(st <= i && i <= en)
 			fill(255, 0, 0);
-		else
-			fill(0);
+		else{
+			if(st == en)
+				fill(0, 255, 0);
+			else
+				fill(0);
+		}
 		rect(i * size, height - elements[i], size, elements[i]);
 	}
 }
